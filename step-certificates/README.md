@@ -54,6 +54,7 @@ chart and their default values.
 | `ca.password`               | Password for the CA keys, if empty it will be automatically generated             | `""`                          |
 | `ca.provisioner.name`       | Name for the default provisioner                                                  | `admin`                       |
 | `ca.provisioner.password`   | Password for the default provisioner, if empty it will be automatically generated | `""`                          |
+| `ca.ssh_support.enabled`    | If true, step certificates will be configured with a SSH support                  | `false`                       |
 | `ca.db.enabled`             | If true, step certificates will be configured with a database                     | `true`                        |
 | `ca.db.persistent`          | If true a persistent volume will be used to store the db                          | `true`                        |
 | `ca.db.accessModes`         | Persistent volume access mode                                                     | `["ReadWriteOnce"]`           |

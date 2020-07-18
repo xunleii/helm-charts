@@ -47,6 +47,9 @@ ca:
     name: admin
     # password is the password used to encrypt the provisioner private key.
     password:
+  # ssh_support enable SSH support with step-certificates
+  ssh_support:
+    enabled: false
   # db contains the step-certificate dataabase configuration.
   db:
     # enabled defines if the database is enabled.

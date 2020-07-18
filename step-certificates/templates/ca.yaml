@@ -82,6 +82,11 @@ spec:
           - name: ca-password
             mountPath: /home/step/secrets/passwords
             readOnly: true
+          {{- if .Values.ca.ssh_support.enabled }}
+          - name: ssh-templates
+            mountPath: /home/step/templates/ssh
+            readOnly: false
+          {{- end }}
           {{- if .Values.ca.db.enabled }}
           - name: database
             mountPath: /home/step/db
@@ -100,10 +105,15 @@ spec:
       - name: ca-password
         secret:
           secretName: {{ include "step-certificates.fullname" . }}-ca-password
+      {{- if .Values.ca.ssh_support.enabled }}
+      - name: ssh-templates
+        configMap:
+          name: {{ include "step-certificates.fullname" . }}-ssh-templates
+      {{- end }}
       {{- if and .Values.ca.db.enabled (not .Values.ca.db.persistent) }}
       - name: database
         emptyDir: {}
-      {{- end }}
+      {{- end }}      
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
